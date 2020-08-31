@@ -57,7 +57,7 @@ void optionselect::draw()
 
 void optionselect::handle_input(int key, int nav)
 {
-	if (handle_nav(nav))
+	if (handle_navigation(nav))
 		call_on_update();
 	else if (key == VK_RETURN)
 		call_on_enter();

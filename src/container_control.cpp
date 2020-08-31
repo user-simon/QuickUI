@@ -25,7 +25,7 @@ void container_control::remove(std::string name)
 		remove(c);
 }
 
-bool container_control::handle_nav(int nav)
+bool container_control::handle_navigation(int nav)
 {
 	if (nav == ARROW_LEFT)
 	{

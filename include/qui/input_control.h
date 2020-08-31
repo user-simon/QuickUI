@@ -3,19 +3,19 @@
 
 namespace qui
 {
-	template<typename T>
+	template<typename value_t>
 	class input_control : public virtual control
 	{
 	private:
-		T m_default_value;
+		value_t m_default_value;
 
 	protected:
-		T m_value;
+		value_t m_value;
 
 	protected:
 		input_control() {}
 
-		input_control(T default_value)
+		input_control(value_t default_value)
 		{
 			m_default_value = default_value;
 			set_value(default_value);
@@ -34,12 +34,12 @@ namespace qui
 		}
 
 	public:
-		virtual T value()
+		virtual value_t value()
 		{
 			return m_value;
 		}
 
-		virtual void set_value(T value)
+		virtual void set_value(value_t value)
 		{
 			m_value = value;
 		}
@@ -49,7 +49,7 @@ namespace qui
 			set_value(m_default_value);
 		}
 
-		std::function<void(input_control*, T)> on_enter;
-		std::function<void(input_control*, T)> on_update;
+		std::function<void(input_control*, value_t)> on_enter;
+		std::function<void(input_control*, value_t)> on_update;
 	};
 }

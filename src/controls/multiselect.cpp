@@ -32,7 +32,7 @@ void multiselect::draw()
 
 void multiselect::handle_input(int key, int nav)
 {
-	if (handle_nav(nav))
+	if (handle_navigation(nav))
 		call_on_update();
 	else if (key == VK_RETURN && on_enter)
 		call_on_enter();

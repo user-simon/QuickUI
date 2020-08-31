@@ -14,7 +14,7 @@ namespace qui
 		std::vector<control*>::iterator m_cursor;
 
 	protected:
-		bool handle_nav(int nav);
+		bool handle_navigation(int nav);
 
 	protected:
 		container_control() {}
