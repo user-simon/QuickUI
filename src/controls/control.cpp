@@ -2,7 +2,7 @@
 #include "qui.h"
 using namespace qui;
 
-control::control(std::string name, container* parent, std::string title, control* prev_displayed)
+control::control(std::string name, container_control* parent, std::string title, control* prev_displayed)
 {
 	m_name = name;
 	m_parent = parent;
@@ -32,12 +32,18 @@ void control::draw_title()
 		std::cout << menu::indent << m_title << std::endl;
 }
 
+void control::call_on_enter()
+{
+	if (on_enter)
+		on_enter(this);
+}
+
 std::string control::name()
 {
 	return m_name;
 }
 
-container* control::parent()
+container_control* control::parent()
 {
 	return m_parent;
 }

@@ -1,12 +1,12 @@
 #pragma once
-#include "container.h"
+#include "container_control.h"
 
 namespace qui
 {
 	/// <summary>
 	/// Control to show arbitrary controls to be displayed at once in the menu
 	/// </summary>
-	class page : public container
+	class page : public container_control
 	{
 	private:
 		void draw_title() override;
@@ -17,6 +17,8 @@ namespace qui
 		/// <param name="title">Text shown above control</param>
 		/// <param name="prev_displayed">Only set when control is top-level. Pointer to control to be shown when Escape is pressed</param>
 		page(std::string name, std::string title = "", control* prev_displayed = nullptr);
+
+		// control overrides
 
 		void draw() override;
 		void handle_input(int key, int nav) override;

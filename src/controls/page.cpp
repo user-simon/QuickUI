@@ -3,7 +3,7 @@
 using namespace qui;
 
 page::page(std::string name, std::string title, control* prev_displayed) :
-	container(name, nullptr, title, prev_displayed)
+	control(name, nullptr, title, prev_displayed)
 {	
 
 }

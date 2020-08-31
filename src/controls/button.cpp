@@ -2,16 +2,16 @@
 #include "qui.h"
 using namespace qui;
 
-button::button(std::string name, container* parent, std::string text, control* prev_displayed) :
-	control(name, parent, text, prev_displayed)
-{
-
-}
-
-button::button(std::string name, container* parent, std::function<void(button*)> callback, std::string text, control* prev_displayed) :
-	button(name, parent, text, prev_displayed)
+button::button(std::string name, container_control* parent, std::function<void(control*)> callback, std::string text) :
+	control(name, parent, text)
 {
 	on_enter = callback;
+}
+
+button::button(std::string name, container_control* parent, std::string text) :
+	control(name, parent, text)
+{
+	
 }
 
 void button::draw()
@@ -28,7 +28,6 @@ void button::handle_input(int key, int nav)
 {
 	if (key == VK_RETURN)
 	{
-		if (on_enter)
-			on_enter(this);
+		call_on_enter();
 	}
 }

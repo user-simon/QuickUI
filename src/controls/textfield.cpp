@@ -2,12 +2,36 @@
 #include "qui.h"
 using namespace qui;
 
-textfield::textfield(std::string name, container* parent, std::string title, bool hide, control* prev_displayed)
-	: control(name, parent, title, prev_displayed)
+textfield::textfield(std::string name, container_control* parent, std::string title, bool hide, std::string default_value)
+	: control(name, parent, title), input_control(default_value)
 {
 	m_hide = hide;
-	m_value = "";
 	m_cursor = m_value.end();
+}
+
+bool textfield::hidden()
+{
+	return m_hide;
+}
+
+void textfield::set_hidden(bool hide_chars)
+{
+	m_hide = hide_chars;
+}
+
+std::string::iterator textfield::find_space()
+{
+	std::string::iterator it = std::prev(m_cursor);
+
+	if (!m_hide)
+	{
+		while (--it > m_value.begin())
+		{
+			if (*it == ' ')
+				return std::next(it);
+		}
+	}
+	return m_value.begin();
 }
 
 void textfield::draw()
@@ -56,55 +80,18 @@ void textfield::handle_input(int key, int nav)
 			m_cursor = m_value.erase(find_space(), m_cursor);
 		break;
 	case VK_RETURN:
-		if (on_enter)
-			on_enter(this);
+		call_on_enter();
 		return;
 	default:
 		m_cursor = m_value.insert(m_cursor, key);
 		m_cursor++;
 		break;
 	}
-	if (on_update)
-		on_update(this);
-}
-
-void textfield::reset()
-{
-	set_value("");
-}
-
-std::string::iterator textfield::find_space()
-{
-	std::string::iterator it = std::prev(m_cursor);
-
-	if (!m_hide)
-	{
-		while (--it > m_value.begin())
-		{
-			if (*it == ' ')
-				return std::next(it);
-		}
-	}
-	return m_value.begin();
-}
-
-std::string textfield::value()
-{
-	return m_value;
+	call_on_update();
 }
 
 void textfield::set_value(std::string value)
 {
 	m_value = value;
 	m_cursor = m_value.end();
-}
-
-bool textfield::hidden()
-{
-	return m_hide;
-}
-
-void textfield::set_hidden(bool hide_chars)
-{
-	m_hide = hide_chars;
 }

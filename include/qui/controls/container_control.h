@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-
 #include "control.h"
 
 namespace qui
@@ -8,7 +7,7 @@ namespace qui
 	/// <summary>
 	/// Base class for controls that contain other controls
 	/// </summary>
-	class container : public control
+	class container_control : public virtual control
 	{
 	protected:
 		std::vector<control*> m_controls;
@@ -17,9 +16,10 @@ namespace qui
 	protected:
 		bool handle_nav(int nav);
 
-	public:
-		container(std::string name, container* parent, std::string title, control* prev_displayed);
+	protected:
+		container_control() {}
 
+	public:
 		/// <summary>
 		/// Adds a control to container
 		/// </summary>

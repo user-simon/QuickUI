@@ -1,7 +1,7 @@
 #pragma once
-#include <string>
 #include <vector>
 #include <unordered_map>
+#include "controls/input_control.h"
 
 namespace qui
 {
@@ -46,7 +46,12 @@ namespace qui
 		static void exec();
 
 		/// <summary>
-		/// Stops drawing and listening for input
+		/// Stops drawing and listening for input. Restart by calling exec
+		/// </summary>
+		static void stop();
+
+		/// <summary>
+		/// Closes the console and removes controls
 		/// </summary>
 		static void exit();
 
@@ -88,6 +93,12 @@ namespace qui
 		static std::vector<control*> controls();
 
 		/// <summary>
+		/// Checks if control exists in menu
+		/// </summary>
+		/// <param name="name">Name of the control</param>
+		static bool control_exists(std::string name);
+
+		/// <summary>
 		/// Gets pointer to control from its name
 		/// </summary>
 		static control* get(std::string name);
@@ -95,15 +106,25 @@ namespace qui
 		/// <summary>
 		/// Gets pointer to control from its name and casts it to expected control type. In C++20, should add constraint of T having to inherit from control
 		/// </summary>
-		template<typename T>
-		static T* get_as(std::string name);
+		template<typename control_t>
+		static control_t* get_as(std::string name);
+
+		template<typename value_t>
+		static value_t get_value(std::string name);
 	};
 
 	// templated function definitions
 
-	template<typename T>
-	static T* menu::get_as(std::string name)
+	template<typename control_t>
+	static control_t* menu::get_as(std::string name)
 	{
-		return (T*)get(name);
+		return dynamic_cast<control_t*>(get(name));
+	}
+
+	template<typename value_t>
+	static value_t menu::get_value(std::string name)
+	{
+		input_control<value_t>* c = get_as<input_control<value_t>>(name);
+		return c->value();
 	}
 }

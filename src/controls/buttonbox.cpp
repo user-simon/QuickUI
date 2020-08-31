@@ -5,8 +5,8 @@ using namespace qui;
 // temporary C++17 solution; C++20 should provide constexpr for normal std::strings
 constexpr std::string_view BUTTON_TYPE_TITLES[] = { "OK", "Cancel", "Save", "Discard", "Yes", "No" };
 
-buttonbox::buttonbox(std::string name, container* parent, unsigned int button_types, std::function<void(buttonbox*, button_type)> callback, std::string title, control* prev_displayed)
-	: container(name, parent, title, prev_displayed)
+buttonbox::buttonbox(std::string name, container_control* parent, unsigned int button_types, std::function<void(buttonbox*, button_type)> callback, std::string title)
+	: control(name, parent, title)
 {
 	m_button_types = button_types;
 	on_enter = callback;
@@ -22,6 +22,18 @@ buttonbox::buttonbox(std::string name, container* parent, unsigned int button_ty
 			b->set_data((void*)type);
 		}
 	}
+}
+
+void buttonbox::call_on_enter()
+{
+	if (on_enter)
+		on_enter(this, selected_button_type());
+}
+
+void buttonbox::call_on_update()
+{
+	if (on_update)
+		on_update(this, selected_button_type());
 }
 
 void buttonbox::draw()
@@ -41,18 +53,12 @@ void buttonbox::draw()
 void buttonbox::handle_input(int key, int nav)
 {
 	if (handle_nav(nav))
-	{
-		if (on_update)
-			on_update(this, selected_button_type());
-	}
+		call_on_update();
 	else if (key == VK_RETURN)
-	{
-		if (on_enter)
-			on_enter(this, selected_button_type());
-	}
+		call_on_enter();
 }
 
 button_type buttonbox::selected_button_type()
 {
-	return (button_type)(size_t)selected_control()->data();
+	return (button_type)(unsigned int)selected_control()->data();
 }

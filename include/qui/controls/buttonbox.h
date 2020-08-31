@@ -1,5 +1,5 @@
 #pragma once
-#include "container.h"
+#include "container_control.h"
 
 namespace qui
 {
@@ -17,7 +17,7 @@ namespace qui
 	/// <summary>
 	/// Control for showing standard buttons such as "OK" or "CANCEL"
 	/// </summary>
-	class buttonbox : public container
+	class buttonbox : public container_control
 	{
 	private:
 		unsigned int m_button_types;
@@ -25,14 +25,18 @@ namespace qui
 	private:
 		button_type selected_button_type();
 
+		void call_on_enter() override;
+		void call_on_update();
+
 	public:
 		/// <param name="name">Internal name used to identify the control</param>
 		/// <param name="parent">Parent container. Control is automatically added to it</param>
-		/// <param name="button_types">Buttons to be displayed. Follows format "BUTTON_x | BUTTON_y"</param>
+		/// <param name="button_types">Buttons to be displayed. Enter like "BUTTON_x | BUTTON_y"</param>
 		/// <param name="callback">Function to be called when one of the buttons is pressed</param>
 		/// <param name="title">Text shown above control</param>
-		/// <param name="prev_displayed">Only set when control is top-level. Pointer to control to be shown when Escape is pressed</param>
-		buttonbox(std::string name, container* parent, unsigned int  button_types, std::function<void(buttonbox*, button_type)> callback, std::string title = "", control* prev_displayed = nullptr);
+		buttonbox(std::string name, container_control* parent, unsigned int  button_types, std::function<void(buttonbox*, button_type)> callback, std::string title = "");
+
+		// control overrides
 
 		void draw() override;
 		void handle_input(int key, int nav) override;

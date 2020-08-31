@@ -2,8 +2,6 @@
 #include "qui.h"
 using namespace qui;
 
-#define THIS_CONTAINS(name) (m_controls_lookup.count(name))
-
 std::unordered_map<std::string, control*> menu::m_controls_lookup;
 bool menu::m_exit;
 control* menu::m_displayed;
@@ -30,31 +28,6 @@ void menu::init()
 	SetConsoleCursorInfo(console_handle, &info);
 }
 
-void menu::draw()
-{
-	std::cout << std::endl << std::endl << std::endl;
-	m_displayed->draw();
-}
-
-void menu::handle_input()
-{
-	// _getch allows you to get keyboard input without prinout in the console
-	const int key = _getch();
-
-	// if key press has a certain command key value, a second call to _getch will reveal which command key was pressed (such as an arrow keys)
-	const int nav = (key == NAV_KEY) ? _getch() : NULL;
-
-	if (key == VK_ESCAPE)
-	{
-		if (control* prev; prev = m_displayed->prev_displayed())
-			set_displayed(prev);
-	}
-	else
-	{
-		m_displayed->handle_input(key, nav);
-	}
-}
-
 void menu::exec()
 {
 	m_exit = false;
@@ -70,16 +43,52 @@ void menu::exec()
 	}
 }
 
+void menu::stop()
+{
+	m_exit = true;
+}
+
+void menu::exit()
+{
+	stop();
+
+	for (auto& [name, control] : m_controls_lookup)
+		delete control;
+
+	m_controls_lookup.clear();
+	ExitProcess(0);
+}
+
+void menu::draw()
+{
+	std::cout << std::endl << std::endl << std::endl;
+	m_displayed->draw();
+}
+
+void menu::handle_input()
+{
+	// _getch allows you to get keyboard input without printout in the console
+	const int key = _getch();
+
+	// if key press has a certain command key value, a second call to _getch will reveal which command key was pressed (such as arrow keys)
+	const int nav = (key == NAV_KEY) ? _getch() : NULL;
+
+	if (key == VK_ESCAPE)
+	{
+		if (control* prev; prev = m_displayed->prev_displayed())
+			set_displayed(prev);
+	}
+	else
+	{
+		m_displayed->handle_input(key, nav);
+	}
+}
+
 void menu::clear_screen()
 {
 	// alternatives to this causes the menu to not draw while a key is held down
 	// should refactor
 	system("cls");
-}
-
-void menu::exit()
-{
-	m_exit = true;
 }
 
 void menu::set_displayed(control* c)
@@ -96,7 +105,7 @@ void menu::set_displayed(std::string name)
 void menu::add(control* c)
 {
 	// if the menu has a control with the same name, replace it with the new one
-	if (THIS_CONTAINS(c->name()))
+	if (control_exists(c->name()))
 		remove(c->name());
 
 	m_controls_lookup.emplace(c->name(), c);
@@ -130,9 +139,14 @@ std::vector<control*> menu::controls()
 	return controls;
 }
 
+bool menu::control_exists(std::string name)
+{
+	return m_controls_lookup.count(name);
+}
+
 control* menu::get(std::string name)
 {
-	if (THIS_CONTAINS(name))
+	if (control_exists(name))
 		return m_controls_lookup[name];
 
 	return nullptr;

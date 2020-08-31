@@ -2,19 +2,13 @@
 #include "qui.h"
 using namespace qui;
 
-container::container(std::string name, container* parent, std::string title, control* prev_displayed)
-	: control(name, parent, title, prev_displayed)
-{
-
-}
-
-void container::add(control* c)
+void container_control::add(control* c)
 {
 	m_controls.push_back(c);
 	m_cursor = m_controls.begin();
 }
 
-void container::remove(control* c)
+void container_control::remove(control* c)
 {
 	std::vector<control*>::iterator it = std::find(m_controls.begin(), m_controls.end(), c);
 
@@ -25,13 +19,13 @@ void container::remove(control* c)
 	}
 }
 
-void container::remove(std::string name)
+void container_control::remove(std::string name)
 {
 	if (control* c; c = menu::get(name))
 		remove(c);
 }
 
-bool container::handle_nav(int nav)
+bool container_control::handle_nav(int nav)
 {
 	if (nav == ARROW_LEFT)
 	{
@@ -50,17 +44,17 @@ bool container::handle_nav(int nav)
 	return true;
 }
 
-control* container::selected_control()
+control* container_control::selected_control()
 {
 	return *m_cursor;
 }
 
-std::vector<control*> container::controls()
+std::vector<control*> container_control::controls()
 {
 	return m_controls;
 }
 
-unsigned int container::selected_index()
+unsigned int container_control::selected_index()
 {
 	return m_cursor - m_controls.begin();
 }

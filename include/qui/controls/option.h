@@ -20,9 +20,10 @@ namespace qui
 		/// <param name="text">Text displayed on the option</param>
 		option(std::string name, optionselect* parent, unsigned int index, std::string text = "");
 
-		void draw() override;
-		void handle_input(int key, int nav) override {};
-
 		unsigned int index();
+
+		// control overrides
+
+		void draw() override;
 	};
 }
