@@ -14,7 +14,7 @@ In a page, the end-user can use the arrow-up and arrow-down keys to change the f
 # Controls
 Controls have callbacks in the form of an std::function which can be set to any applicable function. The parameters of the std::function vary from control to control. All controls have an on_enter-callback which gets called when the control is focused and the enter-key is pressed.
 
-There are two built-in control types which extend the functionality of the basic control - input controls and container controls. Input controls have a user-enterable value of a templated type. As such they have an extra on_update-callback and their callbacks have an extra parameter containing the current value of the control. Container controls are controls which contain other controls. Oftentimes, these have to allow the end-user to focus one out of several controls and as such they have a control iterator. Since the arrow-up and arrow-down keys are reserved for inter-control navigation, the arrow-left and arrow-right keys are used in container controls intsead.
+There are two built-in control types which extend the functionality of the basic control - input controls and container controls. Input controls have a user-enterable value of a templated type. As such they have an extra on_update-callback and their callbacks have an extra parameter containing the current value of the control. Container controls are controls which contain other controls. Oftentimes, these have to allow the end-user to focus one out of several controls and as such they have a control iterator. Since the arrow-up and arrow-down keys are reserved for inter-control navigation, the arrow-left and arrow-right keys are used in container controls instead.
 
 ### Button
 Just utilizes the "on_enter"-callback. 
@@ -41,7 +41,7 @@ Gets a numerical value from the user with customizable range and step-size.
 Allows the user to select one of several different alternatives.
 
 ### Textfield
-Gets text input from the user. Mid-text cursor and CTRL + Backspace as well as password input is supported.
+Gets text input from the user. Mid-text cursor and CTRL + Backspace as well as password inputs are supported.
 
 # Usage
 ### Setting up
@@ -53,6 +53,8 @@ Gets text input from the user. Mid-text cursor and CTRL + Backspace as well as p
 ### Getting started
 
 To use QUI normally, simply add `#include <qui/qui.h>`. This exposes all of the functionality in QUI. If for some reason you'd prefer to create your own controls but still use the QUI base, you can instead do `#include <qui/base.h>` which exposes only the basic functionality of QUI.
+
+### Example
 
 ```cpp
 #include <qui/qui.h>
