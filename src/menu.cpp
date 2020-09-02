@@ -95,7 +95,7 @@ void menu::goto_last_control()
 {
 	if (m_displayed_path.size() > 1)
 	{
-		m_displayed = m_displayed_path[m_displayed_path.size() - 2];
+		m_displayed = *(m_displayed_path.end() - 2);
 		m_displayed_path.pop_back();
 	}
 }
