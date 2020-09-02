@@ -20,7 +20,7 @@ namespace qui
 		/// <param name="parent">Parent container. Control is automatically added to it</param>
 		/// <param name="callback">Function to be called when the button is pressed</param>
 		/// <param name="text">Text shown on control</param>
-		button(std::string name, container_control* parent, std::function<void(control*)> callback, std::string text);
+		button(std::string name, container_control* parent, std::string text, std::function<void(control*)> callback);
 		
 		// control overrides
 

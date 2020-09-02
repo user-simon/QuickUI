@@ -2,7 +2,7 @@
 #include "qui.h"
 using namespace qui;
 
-multiselect::multiselect(std::string name, container_control* parent, std::vector<std::string> options, std::string title, std::vector<bool> default_value)
+multiselect::multiselect(std::string name, container_control* parent, std::string title, std::vector<std::string> options, std::vector<bool> default_value)
 	: control(name, parent, title), input_control(default_value)
 {
 	for (unsigned int i = 0; i < options.size(); i++)

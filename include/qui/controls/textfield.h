@@ -23,7 +23,7 @@ namespace qui
 		/// <param name="parent">Parent container. Control is automatically added to it</param>
 		/// <param name="title">Text shown above control</param>
 		/// <param name="hide_chars">Toggle to only print asterisks</param>
-		textfield(std::string name, container_control* parent, std::string title = "", bool hide = false, std::string default_value = "");
+		textfield(std::string name, container_control* parent, std::string title, std::string default_value = "", bool hide = false);
 		
 		bool hidden();
 		void set_hidden(bool hide_chars);

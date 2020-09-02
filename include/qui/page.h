@@ -16,7 +16,7 @@ namespace qui
 		/// <param name="parent">Parent container. Control is automatically added to it</param>
 		/// <param name="title">Text shown above control</param>
 		/// <param name="prev_displayed">Only set when control is top-level. Pointer to control to be shown when Escape is pressed</param>
-		page(std::string name, std::string title = "", control* prev_displayed = nullptr);
+		page(std::string name, std::string title);
 
 		// control overrides
 

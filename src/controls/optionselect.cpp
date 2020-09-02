@@ -2,29 +2,16 @@
 #include "qui.h"
 using namespace qui;
 
-optionselect::optionselect(std::string name, container_control* parent, std::vector<std::string> options, std::string title)
+optionselect::optionselect(std::string name, container_control* parent, std::string title, std::vector<std::string> options)
 	: control(name, parent, title)
 {
 	for (unsigned int i = 0; i < options.size(); i++)
 		add_option(name + std::to_string(i), i, options[i]);
 }
 
-optionselect::optionselect(std::string name, container_control* parent, std::vector<std::pair<std::string, void*>> options, std::string title)
-	: control(name, parent, title)
-{
-	for (unsigned int i = 0; i < options.size(); i++)
-		add_option(name + std::to_string(i), i, options[i].first, options[i].second);
-}
-
-optionselect::optionselect(std::string name, container_control* parent, std::string title)
-	: control(name, parent, title)
-{
-	
-}
-
 void optionselect::add_option(std::string name, unsigned int index, std::string text, void* data)
 {
-	option* o = new option(name, this, index, text);
+	option* o = new option(name, this, text, index);
 	o->set_data(data);
 }
 

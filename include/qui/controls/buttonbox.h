@@ -34,7 +34,7 @@ namespace qui
 		/// <param name="button_types">Buttons to be displayed. Enter like "BUTTON_x | BUTTON_y"</param>
 		/// <param name="callback">Function to be called when one of the buttons is pressed</param>
 		/// <param name="title">Text shown above control</param>
-		buttonbox(std::string name, container_control* parent, unsigned int  button_types, std::function<void(buttonbox*, button_type)> callback, std::string title = "");
+		buttonbox(std::string name, container_control* parent, std::string title, unsigned int button_types, std::function<void(buttonbox*, button_type)> callback);
 
 		// control overrides
 

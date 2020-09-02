@@ -2,12 +2,11 @@
 #include "qui.h"
 using namespace qui;
 
-control::control(std::string name, container_control* parent, std::string title, control* prev_displayed)
+control::control(std::string name, container_control* parent, std::string title)
 {
 	m_name = name;
 	m_parent = parent;
 	m_title = title;
-	m_prev_displayed = prev_displayed;
 
 	// automatically add control to parent and menu when created
 	menu::add(this);
@@ -18,7 +17,7 @@ control::control(std::string name, container_control* parent, std::string title,
 
 void control::draw_indent()
 {
-	std::string indent = menu::indent;
+	std::string indent = menu::indent();
 
 	if (is_selected())
 		indent[indent.length() * 0.75] = '|';
@@ -29,7 +28,7 @@ void control::draw_indent()
 void control::draw_title()
 {
 	if (!m_title.empty())
-		std::cout << menu::indent << m_title << std::endl;
+		std::cout << menu::indent() << m_title << std::endl;
 }
 
 void control::call_on_enter()
@@ -56,16 +55,6 @@ std::string control::title()
 void control::set_title(std::string title)
 {
 	m_title = title;
-}
-
-control* control::prev_displayed()
-{
-	return m_prev_displayed;
-}
-
-void control::set_prev_displayed(control* prev_displayed)
-{
-	m_prev_displayed = prev_displayed;
 }
 
 void* control::data()

@@ -2,7 +2,7 @@
 #include "qui.h"
 using namespace qui;
 
-numselect::numselect(std::string name, container_control* parent, int min, int max, std::string title, int default_value, int step)
+numselect::numselect(std::string name, container_control* parent, std::string title, int min, int max, int default_value, int step)
 	: control(name, parent, title), input_control(default_value)
 {
 	m_min = min;

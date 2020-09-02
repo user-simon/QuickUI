@@ -21,21 +21,7 @@ namespace qui
 		/// <param name="parent">Parent container. Control is automatically added to it</param>
 		/// <param name="options">Option names</param>
 		/// <param name="title">Text shown above control</param>
-		optionselect(std::string name, container_control* parent, std::vector<std::string> options, std::string title = "");
-
-		/// <summary>
-		/// Alternate constructor for having data associated with each option
-		/// </summary>
-		/// <param name="name">Internal name used to identify the control</param>
-		/// <param name="parent">Parent container. Control is automatically added to it</param>
-		/// <param name="options">Option names and pointers to associated data</param>
-		/// <param name="title">Text shown above control</param>
-		optionselect(std::string name, container_control* parent, std::vector<std::pair<std::string, void*>> options, std::string title = "");
-
-		/// <param name="name">Internal name used to identify the control</param>
-		/// <param name="parent">Parent container. Control is automatically added to it</param>
-		/// <param name="title">Text shown above control</param>
-		optionselect(std::string name, container_control* parent, std::string title = "");
+		optionselect(std::string name, container_control* parent, std::string title, std::vector<std::string> options);
 
 		unsigned int index();
 		void set_index(unsigned int index);

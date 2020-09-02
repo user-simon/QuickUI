@@ -2,8 +2,8 @@
 #include "qui.h"
 using namespace qui;
 
-option::option(std::string name, optionselect* parent, unsigned int index, std::string text)
-	: control(name, parent, text, nullptr)
+option::option(std::string name, optionselect* parent, std::string text, unsigned int index)
+	: control(name, parent, text)
 {
 	m_index = index;
 }

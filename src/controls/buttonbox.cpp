@@ -5,7 +5,7 @@ using namespace qui;
 // temporary C++17 solution; C++20 should provide constexpr for normal std::strings
 constexpr std::string_view BUTTON_TYPE_TITLES[] = { "OK", "Cancel", "Save", "Discard", "Yes", "No" };
 
-buttonbox::buttonbox(std::string name, container_control* parent, unsigned int button_types, std::function<void(buttonbox*, button_type)> callback, std::string title)
+buttonbox::buttonbox(std::string name, container_control* parent, std::string title, unsigned int button_types, std::function<void(buttonbox*, button_type)> callback)
 	: control(name, parent, title)
 {
 	m_button_types = button_types;

@@ -35,14 +35,14 @@ void create_controls()
 	page* login_form = new page("login_form", "Login form");
 	{
 		new textfield("text_username", login_form, "Username");
-		new textfield("text_password", login_form, "Password", true);
-		new button("button_login", login_form, on_login, "Login");
+		new textfield("text_password", login_form, "Password", "", true);
+		new button("button_login", login_form, "Login", on_login);
 	}
 
 	// create second page with servers to be interacted with
 	page* control_panel = new page("control_panel", "Control panel");
 	{
-		optionselect* select_servers = new optionselect("select_servers", control_panel, { "Server 1", "Server 2", "Server 3" }, "Servers");
+		optionselect* select_servers = new optionselect("select_servers", control_panel, "Servers", { "Server 1", "Server 2", "Server 3" });
 		select_servers->on_enter = on_server_select;
 	}
 }
@@ -56,7 +56,7 @@ void on_server_select(control* sender, option* select_option)
 	{
 		// create page to display options for server
 		// prev_displayed is set to "control_panel" page: when escape is pressed the control_panel will be displayed
-		page* server = new page(name, select_option->title(), menu::get("control_panel"));
+		page* server = new page(name, select_option->title());
 		{
 			new button("button_server_restart", server, "Restart");
 			new button("button_server_start", server, "Start");

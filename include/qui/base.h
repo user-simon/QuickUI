@@ -3,3 +3,4 @@
 #include "control.h"
 #include "container_control.h"
 #include "input_control.h"
+#include "page.h"

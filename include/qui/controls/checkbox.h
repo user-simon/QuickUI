@@ -18,7 +18,7 @@ namespace qui
 		/// <param name="parent">Parent container. Control is automatically added to it</param>
 		/// <param name="title">Text shown on control</param>
 		/// <param name="default_val">Default value of the checkbox</param>
-		checkbox(std::string name, container_control* parent, std::string title = "", bool default_value = false);
+		checkbox(std::string name, container_control* parent, std::string title, bool default_value = false);
 
 		// control overrides
 

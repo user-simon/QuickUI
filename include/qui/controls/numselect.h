@@ -27,7 +27,7 @@ namespace qui
 		/// <param name="default_val">Value that control is initialized with</param>
 		/// <param name="step">Indicates the increment/decrement amount</param>
 		/// <param name="prev_displayed">Only set when control is top-level. Pointer to control to be shown when Escape is pressed</param>
-		numselect(std::string name, container_control* parent, int min, int max, std::string title = "", int default_val = 0, int step = 1);
+		numselect(std::string name, container_control* parent, std::string title, int min, int max, int default_val = 0, int step = 1);
 
 		int min();
 		void set_min(int min);

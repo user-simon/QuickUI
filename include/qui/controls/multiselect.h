@@ -15,7 +15,7 @@ namespace qui
 		/// <param name="options">Titles of the options to be displayed in the control</param>
 		/// <param name="title">Text shown on control</param>
 		/// <param name="prev_displayed">Only set when control is top-level. Pointer to control to be shown when Escape is pressed</param>
-		multiselect(std::string name, container_control* parent, std::vector<std::string> options, std::string title = "", std::vector<bool> default_value = {});
+		multiselect(std::string name, container_control* parent, std::string title, std::vector<std::string> options, std::vector<bool> default_value = {});
 		
 		// control overrides
 

@@ -2,7 +2,7 @@
 #include "qui.h"
 using namespace qui;
 
-button::button(std::string name, container_control* parent, std::function<void(control*)> callback, std::string text) :
+button::button(std::string name, container_control* parent, std::string text, std::function<void(control*)> callback) :
 	control(name, parent, text)
 {
 	on_enter = callback;

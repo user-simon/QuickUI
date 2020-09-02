@@ -5,7 +5,8 @@ using namespace qui;
 std::unordered_map<std::string, control*> menu::m_controls_lookup;
 bool menu::m_exit;
 control* menu::m_displayed;
-std::string menu::indent;
+std::vector<control*> menu::m_displayed_path;
+std::string menu::m_indent;
 
 void menu::init()
 {
@@ -18,8 +19,8 @@ void menu::init()
 	SHORT console_height = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
 	SetConsoleScreenBufferSize(console_handle, {console_width, console_height});
 	
-	// calc indent
-	indent = std::string(console_width * 0.07f, ' ');
+	// calculate indent based on console width
+	m_indent = std::string(console_width * 0.07f, ' ');
 
 	// hide console cursor
 	CONSOLE_CURSOR_INFO info;
@@ -75,8 +76,7 @@ void menu::handle_input()
 
 	if (key == VK_ESCAPE)
 	{
-		if (control* prev; prev = m_displayed->prev_displayed())
-			set_displayed(prev);
+		goto_last_control();
 	}
 	else
 	{
@@ -91,9 +91,19 @@ void menu::clear_screen()
 	system("cls");
 }
 
+void menu::goto_last_control()
+{
+	if (m_displayed_path.size() > 1)
+	{
+		m_displayed = m_displayed_path[m_displayed_path.size() - 2];
+		m_displayed_path.pop_back();
+	}
+}
+
 void menu::set_displayed(control* c)
 {
 	m_displayed = c;
+	m_displayed_path.push_back(c);
 }
 
 void menu::set_displayed(std::string name)
@@ -142,6 +152,11 @@ std::vector<control*> menu::controls()
 bool menu::control_exists(std::string name)
 {
 	return m_controls_lookup.count(name);
+}
+
+std::string menu::indent()
+{
+	return m_indent;
 }
 
 control* menu::get(std::string name)

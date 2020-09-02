@@ -2,7 +2,7 @@
 #include "qui.h"
 using namespace qui;
 
-textfield::textfield(std::string name, container_control* parent, std::string title, bool hide, std::string default_value)
+textfield::textfield(std::string name, container_control* parent, std::string title, std::string default_value, bool hide)
 	: control(name, parent, title), input_control(default_value)
 {
 	m_hide = hide;

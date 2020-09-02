@@ -2,8 +2,8 @@
 #include "qui.h"
 using namespace qui;
 
-page::page(std::string name, std::string title, control* prev_displayed) :
-	control(name, nullptr, title, prev_displayed)
+page::page(std::string name, std::string title) :
+	control(name, nullptr, title)
 {	
 
 }
@@ -12,8 +12,8 @@ void page::draw_title()
 {
 	if (!title().empty())
 	{
-		std::cout << menu::indent << title() << std::endl;
-		std::cout << menu::indent << std::string(title().length(), '-');
+		std::cout << menu::indent() << title() << std::endl;
+		std::cout << menu::indent() << std::string(title().length(), '-');
 	}
 }
 

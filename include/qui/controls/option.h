@@ -18,7 +18,7 @@ namespace qui
 		/// <param name="parent">Parent container. Control is automatically added to it</param>
 		/// <param name="index">Index of option in optionselect list</param>
 		/// <param name="text">Text displayed on the option</param>
-		option(std::string name, optionselect* parent, unsigned int index, std::string text = "");
+		option(std::string name, optionselect* parent, std::string text, unsigned int index);
 
 		unsigned int index();
 
