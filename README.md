@@ -105,7 +105,7 @@ int main()
 }
 ```
 
-The button has a callback set to the function "goto_next_page". Let's add a definition for this. The parameters for a normal control's callback simply consist of a pointer to whichever control called the callback. This allows the code to distinguish between different controls, should multiple controls have the same callback. Here, we'll make the callback set the page to a different one. 
+The button "button_next_page" has a callback set to the function "goto_next_page". Let's add a definition for this. The parameters for a normal control's callback simply consist of a pointer to whichever control called the callback. This allows the code to distinguish between different controls, should multiple controls have the same callback. Here, we'll make the callback set the page to a different one. 
 
 The next page is displayed through referencing it by its internal name, in this case "second_page".
 
