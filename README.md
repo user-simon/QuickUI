@@ -3,6 +3,9 @@
 This library is meant to provide a simple to make, simple to use UI for use in C++ applications.
 Out of the box it includes various common controls as well as good infrastructure to create custom controls for use in the menu.
 
+Example
+![QUI Example](https://i.imgur.com/ZrYuXyR.gif)
+
 All controls have an associated string referred to as their name which serves as an internal identifier. This allows you to get any control from the menu by providing its name.
 
 When pressing the escape-key the currently displayed control is set to whichever the previously displayed control was.
@@ -23,7 +26,9 @@ There are two built-in control types which extend the functionality of the basic
 Controls are automatically added to both their parent and to the menu when they are created, this is to minimize the code required to use the library.
 
 ### Button
-Just utilizes the "on_enter"-callback. 
+Just utilizes the "on_enter"-callback.
+
+![Button](https://i.imgur.com/sOBSuej.gif)
 
 ### Buttonbox
 Displays a set of different standard buttons next to each other. The buttons which can be used are:
@@ -34,20 +39,34 @@ Displays a set of different standard buttons next to each other. The buttons whi
 * Yes
 * No
 
+![Button](https://i.imgur.com/xf45TFv.gif)
+
 ### Checkbox
 Gets a true/false input from the user.
+
+![Checkbox](https://i.imgur.com/X1q9yMW.gif)
 
 ### Multiselect
 Gets several true/false inputs from the user. Is essentially a checkbox list.
 
+![Multiselect](https://i.imgur.com/YcyO5tu.gif)
+
 ### Numselect
 Gets a numerical value from the user with customizable range and step-size.
+
+![Numselect](https://i.imgur.com/MYkbDQb.gif)
 
 ### Optionselect
 Allows the user to select one of several different alternatives.
 
+![Optionselect](https://i.imgur.com/WKwgptx.gif)
+
 ### Textfield
 Gets text input from the user. Mid-text cursor and CTRL + Backspace as well as password inputs are supported.
+
+![Textfield](https://i.imgur.com/xf45TFv.gif)
+
+![Textfield password](https://i.imgur.com/EFNUUA5.gif)
 
 # Usage
 ### Setting up
@@ -140,7 +159,7 @@ void goto_next_page(control* sender)
 	menu::set_displayed("second_page");
 }
 
-void set_new_title()
+void set_new_title(control* sender)
 {
 	// you can get values of input controls through the `menu::get_value()` function, though you have to provide the expected input value type
 	std::string new_title = menu::get_value<std::string>("text_page_title");
@@ -173,12 +192,16 @@ int main()
 }
 ```
 
+### Result
+![Example code result](https://i.imgur.com/L7TPWg3.gif)
+
 For further reference, see the demo.
 
 # Todo
 * Add Linux support through replacing or providing alternatives to Windows-specific sections such as clearing the console and setting the console size
 * Add a tab_control which would allow the user to intuitively switch between different labeled pages, much like tabs in a browser
 * Allow the user to enter the value in a numselect via means of keyboard input
+* Make the drawing of controls prettier
 
 ## Known issues
 * Controls can go out of bounds on either axes. Fixing requires calculating the width and height of all controls in a page and setting the console size accordingly
