@@ -26,7 +26,10 @@ void multiselect::draw()
 		if (option->value())
 			prefix[0] = '~';
 			
-		std::cout << prefix << c->title() << std::endl;
+		std::cout << prefix << c->title();
+
+		if (c != *std::prev(controls().end()))
+			std::cout << std::endl;
 	}
 }
 
