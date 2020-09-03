@@ -39,7 +39,7 @@ Displays a set of different standard buttons next to each other. The buttons whi
 * Yes
 * No
 
-![Button](https://i.imgur.com/xf45TFv.gif)
+![Buttonbox](https://i.imgur.com/06AZlgd.gif)
 
 ### Checkbox
 Gets a true/false input from the user.
