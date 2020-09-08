@@ -198,9 +198,9 @@ int main()
 For further reference, see the demo.
 
 # Todo
+* Revamp input system to allow for checking multiple key inputs at once (such as CTRL+[key] or SHIFT+[key] combinations)
+* Add a tab_control which would allow the end-user to intuitively switch between different labeled pages, much like tabs in a browser
 * Add Linux support through replacing or providing alternatives to Windows-specific sections such as clearing the console and setting the console size
-* Add a tab_control which would allow the user to intuitively switch between different labeled pages, much like tabs in a browser
-* Allow the user to enter the value in a numselect via means of keyboard input
 * Make the drawing of controls prettier
 
 ## Known issues
