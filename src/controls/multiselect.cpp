@@ -43,11 +43,6 @@ void multiselect::handle_input(int key, int nav)
 		selected_control()->handle_input(key, nav);
 }
 
-void multiselect::reset()
-{
-	input_control::reset();
-}
-
 std::vector<bool> multiselect::value()
 {
 	std::vector<bool> val;
