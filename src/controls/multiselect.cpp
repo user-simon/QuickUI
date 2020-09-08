@@ -45,8 +45,7 @@ void multiselect::handle_input(int key, int nav)
 
 void multiselect::reset()
 {
-	for (control* c : m_controls)
-		c->reset();
+	input_control::reset();
 }
 
 std::vector<bool> multiselect::value()
@@ -59,4 +58,16 @@ std::vector<bool> multiselect::value()
 		val.push_back(cb->value());
 	}
 	return val;
+}
+
+void multiselect::set_value(std::vector<bool> value)
+{
+	if (value.size() < m_controls.size())
+		return;
+
+	for (int i = 0; i < m_controls.size(); i++)
+	{
+		checkbox* cb = dynamic_cast<checkbox*>(m_controls[i]);
+		cb->set_value(value[i]);
+	}
 }

@@ -54,6 +54,12 @@ std::vector<control*> container_control::controls()
 	return m_controls;
 }
 
+void container_control::set_selected_intex(unsigned int index)
+{
+	if (index < m_controls.size())
+		m_cursor = m_controls.begin() + index;
+}
+
 unsigned int container_control::selected_index()
 {
 	return m_cursor - m_controls.begin();

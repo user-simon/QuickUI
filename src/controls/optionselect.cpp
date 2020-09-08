@@ -30,10 +30,14 @@ void optionselect::draw()
 {
 	draw_title();
 
-	control* last_control = *std::prev(m_controls.end());
+	if (!m_controls.size())
+		return;
 
+	control* last_control = *std::prev(m_controls.end());
+	
 	for (control* c : m_controls)
 	{
+		
 		draw_indent();
 		c->draw();
 

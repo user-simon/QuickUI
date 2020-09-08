@@ -26,5 +26,6 @@ namespace qui
 		
 		void reset() override;
 		std::vector<bool> value() override;
+		void set_value(std::vector<bool> value) override;
 	};
 }

@@ -39,6 +39,7 @@ namespace qui
 		control* selected_control();
 		std::vector<control*> controls();
 
+		void set_selected_intex(unsigned int index);
 		unsigned int selected_index();
 	};
 }
