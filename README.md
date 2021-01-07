@@ -1,4 +1,8 @@
+---
+
 ### :warning: NOTICE: This project is deprecated, refer instead to the updated [Fungal UI](https://github.com/userexit/Fungal-UI)
+
+---
 
 # QUI
 
