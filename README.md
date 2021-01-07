@@ -1,3 +1,5 @@
+### :warning: NOTICE: This project is deprecated, refer instead to the updated [Fungal UI](https://github.com/userexit/Fungal-UI)
+
 # QUI
 
 This library is meant to provide a simple to make, simple to use UI for use in C++ applications.
